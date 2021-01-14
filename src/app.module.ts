@@ -5,6 +5,10 @@ import { AppService } from './app.service';
 import {ComicsModule } from './modules/comic/comics.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import {entityComic} from "./entities/comic.entity";
+import {userEntity} from "./entities/user.entity";
+
+import {UserModule} from './modules/UserModule/user.module';
+
 
 @Module({
   imports: [ TypeOrmModule.forRoot({
@@ -14,9 +18,9 @@ import {entityComic} from "./entities/comic.entity";
     username: 'postgres',
     password: 'root',
     database: 'comics',
-    entities: [entityComic],
+    entities: [ "dist/**/*.entity{.ts,.js}"],
     synchronize: true,
-  }),ComicsModule],
+  }),ComicsModule,UserModule],
   controllers: [AppController],
   providers: [AppService],
 })
